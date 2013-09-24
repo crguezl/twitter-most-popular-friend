@@ -21,8 +21,8 @@ n = screen_number - 1
 
 #seguidores.each{ |id|
 for i in (0..seguidores.length)
-	#Solo muestro los primeros 70 usuarios, pues sino se muestra "execution expired"
-	if (i < 70) 
+	#Solo muestro los primeros usuarios sin sobrepasar el limite de peticiones
+	if (i < 90) 
 		id = seguidores[i]
 		amigos[Twitter.user(id).name] = Twitter.user(id).followers_count
 	end
