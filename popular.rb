@@ -10,8 +10,11 @@ screen_number = screen_number.to_i
 
 amigos = Hash.new
 
+client = my_twitter_client() 
 #Guardo los ids de mis amigos
-seguidores = Twitter.friend_ids(screen_name).ids
+
+seguidores = client.friend_ids(screen_name).attrs[:ids]
+#p seguidores
 
 
 #Buscar el nombre de mi amigo y relacionarlo con el numero de seguidores en el hash de amigos
@@ -24,7 +27,7 @@ for i in (0..seguidores.length)
 	#Solo muestro los primeros usuarios sin sobrepasar el limite de peticiones
 	if (i < 90) 
 		id = seguidores[i]
-		amigos[Twitter.user(id).name] = Twitter.user(id).followers_count
+		amigos[client.user(id).name] = client.user(id).followers_count
 	end
 end
 #}
